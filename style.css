@@ -1,0 +1,110 @@
+body {
+    background: #1a1a2e;
+    margin: 0;
+    overflow: hidden;
+    color: #fff;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.canvas-container {
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+    position: relative;
+}
+
+canvas {
+    display: block;
+    width: 100%;
+    height: auto;
+    max-width: 800px;
+    aspect-ratio: 1;
+}
+
+.digital-text {
+    font-family: 'Courier New', monospace;
+    font-size: clamp(1rem, 2.5vw, 1.5rem);
+    color: #ff4b4b;
+    text-shadow: 0 0 5px rgba(255, 75, 75, 0.5);
+    opacity: 0;
+    text-align: center;
+    padding: clamp(10px, 2vw, 20px);
+    z-index: 100;
+    position: relative;
+    max-width: min(90%, 600px);
+    margin: 0 auto;
+    line-height: 1.4;
+    word-wrap: break-word;
+    hyphens: auto;
+}
+
+#textContainer {
+    width: 100%;
+    text-align: center;
+    position: fixed;
+    bottom: clamp(20px, 5vh, 50px);
+    left: 0;
+    right: 0;
+    padding: 0 15px;
+}
+
+.binary-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    pointer-events: none;
+    z-index: -1;
+}
+
+.binary {
+    position: absolute;
+    color: rgba(255, 75, 75, 0.3);
+    font-family: monospace;
+    font-size: 14px;
+    animation: fall linear infinite;
+}
+
+@keyframes fall {
+    from { transform: translateY(-100%); opacity: 1; }
+    to { transform: translateY(1000%); opacity: 0; }
+}
+
+@media (max-width: 768px) {
+    .canvas-container {
+        width: 95%;
+        margin-top: -50px;
+    }
+    
+    #textContainer {
+        bottom: clamp(10px, 3vh, 30px);
+    }
+}
+
+@media (max-width: 480px) {
+    .canvas-container {
+        width: 90%;
+        margin-top: -30px;
+    }
+    
+    #textContainer {
+        bottom: clamp(5px, 2vh, 20px);
+    }
+    
+    .digital-text {
+        padding: clamp(5px, 1.5vw, 15px);
+    }
+}
+
+/* For very small screens */
+@media (max-width: 320px) {
+    .digital-text {
+        font-size: clamp(0.8rem, 2vw, 1rem);
+        padding: clamp(3px, 1vw, 10px);
+    }
+}
